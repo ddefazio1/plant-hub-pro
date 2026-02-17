@@ -19,8 +19,7 @@ Plant Hub Pro is a multi-zone garden irrigation controller that takes watering d
 
 ## Screenshots
 
-(Upload images to screenshots/ folder and link them here)
-
+NA  Yet
 ## Hardware
 
 - ESP32 Dev Module
@@ -32,7 +31,6 @@ Plant Hub Pro is a multi-zone garden irrigation controller that takes watering d
 - Micro SD card module
 - LiPo + TP4056 for remote nodes
 
-Full details → [docs/HARDWARE.md](docs/HARDWARE.md)
 
 ## License
 
