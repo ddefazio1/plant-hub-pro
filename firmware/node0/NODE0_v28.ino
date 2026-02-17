@@ -57,8 +57,8 @@
 #include <PubSubClient.h>
 
 /* ================= USER CONFIG ================= */
-const char* WIFI_SSID = "HomeTeach-IoT";
-const char* WIFI_PASS = "hometeach";
+const char* WIFI_SSID = "CHANGE_ME";
+const char* WIFI_PASS = "CHANGE_ME";
 const char* NODE_NAME = "NODE0";
 
 // MQTT Config
