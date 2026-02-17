@@ -1,0 +1,170 @@
+# =====================================================================
+# PLANT HUB PRO v2.6 - TEMPLATE SENSORS
+# =====================================================================
+
+- sensor:
+    # ===== NODE0 ZONE 0 =====
+    - name: "Garden NODE0 Zone 0 Moisture"
+      unit_of_measurement: "%"
+      icon: mdi:water-percent
+      state: >
+        {% set zones = state_attr('sensor.plant_hub_data', 'zones') %}
+        {% if zones %}
+          {% set zone0 = zones | selectattr('zone', 'equalto', 0) | selectattr('node', 'equalto', 'NODE0') | list %}
+          {% if zone0 %}{{ zone0[0].moisture }}{% else %}unavailable{% endif %}
+        {% else %}unavailable{% endif %}
+
+    - name: "Garden NODE0 Zone 0 Voltage"
+      unit_of_measurement: "V"
+      icon: mdi:flash
+      state: >
+        {% set zones = state_attr('sensor.plant_hub_data', 'zones') %}
+        {% if zones %}
+          {% set zone0 = zones | selectattr('zone', 'equalto', 0) | selectattr('node', 'equalto', 'NODE0') | list %}
+          {% if zone0 %}{{ zone0[0].volts }}{% else %}unavailable{% endif %}
+        {% else %}unavailable{% endif %}
+
+    # ===== NODE0 ZONE 1 =====
+    - name: "Garden NODE0 Zone 1 Moisture"
+      unit_of_measurement: "%"
+      icon: mdi:water-percent
+      state: >
+        {% set zones = state_attr('sensor.plant_hub_data', 'zones') %}
+        {% if zones %}
+          {% set zone1 = zones | selectattr('zone', 'equalto', 1) | selectattr('node', 'equalto', 'NODE0') | list %}
+          {% if zone1 %}{{ zone1[0].moisture }}{% else %}unavailable{% endif %}
+        {% else %}unavailable{% endif %}
+
+    # ===== NODE1 ZONE 1 (matches any remote node) =====
+    - name: "Garden NODE1 Zone 1 Moisture"
+      unit_of_measurement: "%"
+      icon: mdi:water-percent
+      state: >
+        {% set zones = state_attr('sensor.plant_hub_data', 'zones') %}
+        {% if zones %}
+          {% set remote = zones | selectattr('zone', 'equalto', 1) | rejectattr('node', 'equalto', 'NODE0') | list %}
+          {% if remote %}{{ remote[0].moisture }}{% else %}unavailable{% endif %}
+        {% else %}unavailable{% endif %}
+
+    - name: "Garden NODE1 Zone 1 Battery"
+      unit_of_measurement: "V"
+      icon: mdi:battery
+      state: >
+        {% set zones = state_attr('sensor.plant_hub_data', 'zones') %}
+        {% if zones %}
+          {% set remote = zones | selectattr('zone', 'equalto', 1) | rejectattr('node', 'equalto', 'NODE0') | list %}
+          {% if remote and remote[0].battery is defined %}{{ remote[0].battery }}{% else %}unavailable{% endif %}
+        {% else %}unavailable{% endif %}
+
+    - name: "Garden NODE1 Zone 1 Last Seen"
+      icon: mdi:clock-outline
+      state: >
+        {% set zones = state_attr('sensor.plant_hub_data', 'zones') %}
+        {% if zones %}
+          {% set remote = zones | selectattr('zone', 'equalto', 1) | rejectattr('node', 'equalto', 'NODE0') | list %}
+          {% if remote and remote[0].lastSeen is defined %}
+            {% set s = remote[0].lastSeen | int %}
+            {% if s < 60 %}{{ s }}s
+            {% elif s < 3600 %}{{ (s // 60) }}m {{ (s % 60) }}s
+            {% else %}{{ (s // 3600) }}h {{ ((s % 3600) // 60) }}m
+            {% endif %}
+          {% else %}unavailable{% endif %}
+        {% else %}unavailable{% endif %}
+
+    # ===== ENVIRONMENTAL =====
+    - name: "Garden Temperature"
+      unit_of_measurement: "°C"
+      device_class: temperature
+      icon: mdi:thermometer
+      state: "{{ state_attr('sensor.plant_hub_data', 'temp') }}"
+
+    - name: "Garden Temperature F"
+      unit_of_measurement: "°F"
+      icon: mdi:thermometer
+      state: >
+        {% set temp_c = state_attr('sensor.plant_hub_data', 'temp') | float(0) %}
+        {{ (temp_c * 1.8 + 32) | round(1) }}
+
+    - name: "Garden Humidity"
+      unit_of_measurement: "%"
+      device_class: humidity
+      icon: mdi:water-percent
+      state: "{{ state_attr('sensor.plant_hub_data', 'hum') }}"
+
+    - name: "Garden Pressure"
+      unit_of_measurement: "hPa"
+      device_class: pressure
+      icon: mdi:gauge
+      state: "{{ state_attr('sensor.plant_hub_data', 'press') }}"
+
+    - name: "Garden VPD"
+      unit_of_measurement: "kPa"
+      icon: mdi:water-thermometer
+      state: "{{ state_attr('sensor.plant_hub_data', 'vpd') }}"
+
+    # ===== SYSTEM =====
+    - name: "Plant Hub Uptime"
+      icon: mdi:clock-outline
+      state: >
+        {% set m = state_attr('sensor.plant_hub_data', 'uptime') | int(0) %}
+        {% if m < 60 %}{{ m }}m
+        {% elif m < 1440 %}{{ (m // 60) }}h {{ (m % 60) }}m
+        {% else %}{{ (m // 1440) }}d {{ ((m % 1440) // 60) }}h {{ (m % 60) }}m
+        {% endif %}
+
+    - name: "Plant Hub Heap"
+      unit_of_measurement: "KB"
+      icon: mdi:memory
+      state: "{{ (state_attr('sensor.plant_hub_data', 'heap') | int(0) / 1024) | round(0) }}"
+
+    - name: "Plant Hub Nodes"
+      icon: mdi:router-wireless
+      state: "{{ state_attr('sensor.plant_hub_data', 'nodes') }}"
+
+    - name: "Plant Hub Battery"
+      unit_of_measurement: "V"
+      device_class: battery
+      icon: mdi:battery
+      state: "{{ state_attr('sensor.plant_hub_data', 'battery') }}"
+
+- binary_sensor:
+    - name: "Plant Hub Online"
+      device_class: connectivity
+      state: "{{ states('sensor.plant_hub_data') == 'OK' }}"
+
+    - name: "Plant Hub Main Valve"
+      device_class: opening
+      icon: mdi:valve
+      state: "{{ state_attr('sensor.plant_hub_data', 'mainValve') == true }}"
+
+    - name: "Garden NODE0 Zone 0 Needs Water"
+      device_class: problem
+      icon: mdi:water-alert
+      state: >
+        {% set moisture = states('sensor.garden_node0_zone_0_moisture') | float(100) %}
+        {{ moisture < 40 }}
+
+    - name: "Garden NODE0 Zone 1 Needs Water"
+      device_class: problem
+      icon: mdi:water-alert
+      state: >
+        {% set moisture = states('sensor.garden_node0_zone_1_moisture') | float(100) %}
+        {{ moisture < 40 }}
+
+    - name: "Garden NODE1 Zone 1 Needs Water"
+      device_class: problem
+      icon: mdi:water-alert
+      state: >
+        {% set moisture = states('sensor.garden_node1_zone_1_moisture') | float(100) %}
+        {{ moisture < 40 }}
+
+    - name: "Garden NODE1 Online"
+      device_class: connectivity
+      state: >
+        {% set last = state_attr('sensor.plant_hub_data', 'zones') %}
+        {% if last %}
+          {% set remote = last | selectattr('zone', 'equalto', 1) | rejectattr('node', 'equalto', 'NODE0') | list %}
+          {% if remote and remote[0].lastSeen is defined %}
+            {{ remote[0].lastSeen | int < 1860 }}
+          {% else %}false{% endif %}
+        {% else %}false{% endif %}

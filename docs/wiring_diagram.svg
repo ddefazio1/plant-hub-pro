@@ -1,0 +1,238 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1800" font-family="Consolas, monospace">
+  <!-- Background -->
+  <rect width="1200" height="1800" fill="#0f172a" rx="16"/>
+  
+  <!-- Title -->
+  <text x="600" y="50" fill="#22d3ee" font-size="28" font-weight="bold" text-anchor="middle">PLANT HUB PRO - WIRING DIAGRAM</text>
+  <text x="600" y="75" fill="#94a3b8" font-size="14" text-anchor="middle">518 IT Solutions LLC - v2.8</text>
+
+  <!-- ====== NODE0 HUB SECTION ====== -->
+  <rect x="20" y="95" width="1160" height="980" fill="none" stroke="#22d3ee" stroke-width="2" rx="12" stroke-dasharray="8,4"/>
+  <text x="600" y="125" fill="#22d3ee" font-size="20" font-weight="bold" text-anchor="middle">NODE0 - HUB (Wall Powered)</text>
+
+  <!-- ESP32 -->
+  <rect x="440" y="150" width="320" height="400" fill="#1e293b" stroke="#60a5fa" stroke-width="2" rx="8"/>
+  <text x="600" y="180" fill="#60a5fa" font-size="16" font-weight="bold" text-anchor="middle">ESP32 Dev Module</text>
+  <text x="600" y="200" fill="#94a3b8" font-size="11" text-anchor="middle">(or Screw Terminal Breakout Board)</text>
+  
+  <!-- Left pins -->
+  <text x="455" y="235" fill="#fbbf24" font-size="12" font-weight="bold">3.3V</text>
+  <text x="455" y="260" fill="#f87171" font-size="12" font-weight="bold">GND</text>
+  <text x="455" y="285" fill="#4ade80" font-size="12">GPIO 21 (SDA)</text>
+  <text x="455" y="310" fill="#4ade80" font-size="12">GPIO 22 (SCL)</text>
+  <text x="455" y="335" fill="#c084fc" font-size="12">GPIO 25</text>
+  <text x="455" y="360" fill="#c084fc" font-size="12">GPIO 26</text>
+  <text x="455" y="385" fill="#c084fc" font-size="12">GPIO 27</text>
+  <text x="455" y="410" fill="#c084fc" font-size="12">GPIO 14</text>
+  <text x="455" y="435" fill="#c084fc" font-size="12">GPIO 12</text>
+  
+  <!-- Right pins -->
+  <text x="650" y="235" fill="#fbbf24" font-size="12" font-weight="bold">5V (VIN)</text>
+  <text x="650" y="260" fill="#f87171" font-size="12" font-weight="bold">GND</text>
+  <text x="650" y="285" fill="#38bdf8" font-size="12">GPIO 13 (SD CS)</text>
+  <text x="650" y="310" fill="#38bdf8" font-size="12">GPIO 23 (MOSI)</text>
+  <text x="650" y="335" fill="#38bdf8" font-size="12">GPIO 19 (MISO)</text>
+  <text x="650" y="360" fill="#38bdf8" font-size="12">GPIO 18 (CLK)</text>
+  <text x="650" y="385" fill="#94a3b8" font-size="12">GPIO 2 (LED)</text>
+
+  <!-- USB label -->
+  <rect x="540" y="520" width="120" height="25" fill="#475569" rx="4"/>
+  <text x="600" y="538" fill="white" font-size="11" text-anchor="middle">USB-C (Power+OTA)</text>
+
+  <!-- ====== I2C BUS ====== -->
+  <!-- I2C Bus line -->
+  <line x1="440" y1="280" x2="100" y2="280" stroke="#4ade80" stroke-width="2"/>
+  <line x1="100" y1="280" x2="100" y2="520" stroke="#4ade80" stroke-width="2"/>
+  
+  <!-- I2C Label -->
+  <rect x="30" y="215" width="130" height="25" fill="#14532d" rx="4"/>
+  <text x="95" y="233" fill="#4ade80" font-size="12" font-weight="bold" text-anchor="middle">I2C BUS (Shared)</text>
+  
+  <!-- LCD -->
+  <rect x="30" y="250" width="130" height="80" fill="#1e293b" stroke="#4ade80" stroke-width="1.5" rx="6"/>
+  <text x="95" y="272" fill="#4ade80" font-size="13" font-weight="bold" text-anchor="middle">LCD 16x2</text>
+  <text x="95" y="290" fill="#94a3b8" font-size="10" text-anchor="middle">PCF8574 (0x3F)</text>
+  <text x="95" y="308" fill="#fbbf24" font-size="10" text-anchor="middle">VCC → 3.3V</text>
+  <text x="95" y="322" fill="#f87171" font-size="10" text-anchor="middle">GND → GND</text>
+  
+  <!-- ADS1115 -->
+  <rect x="30" y="345" width="130" height="95" fill="#1e293b" stroke="#4ade80" stroke-width="1.5" rx="6"/>
+  <text x="95" y="367" fill="#4ade80" font-size="13" font-weight="bold" text-anchor="middle">ADS1115</text>
+  <text x="95" y="385" fill="#94a3b8" font-size="10" text-anchor="middle">16-bit ADC (0x48)</text>
+  <text x="95" y="403" fill="#fbbf24" font-size="10" text-anchor="middle">VCC → 3.3V</text>
+  <text x="95" y="417" fill="#f87171" font-size="10" text-anchor="middle">GND → GND</text>
+  <text x="95" y="431" fill="#22d3ee" font-size="10" text-anchor="middle">A0 → Soil Sensor 0</text>
+  
+  <!-- BME280 -->
+  <rect x="30" y="455" width="130" height="80" fill="#1e293b" stroke="#4ade80" stroke-width="1.5" rx="6"/>
+  <text x="95" y="477" fill="#4ade80" font-size="13" font-weight="bold" text-anchor="middle">BME280</text>
+  <text x="95" y="495" fill="#94a3b8" font-size="10" text-anchor="middle">Temp/Hum/Press (0x76)</text>
+  <text x="95" y="513" fill="#fbbf24" font-size="10" text-anchor="middle">VCC → 3.3V</text>
+  <text x="95" y="527" fill="#f87171" font-size="10" text-anchor="middle">GND → GND</text>
+  
+  <!-- SDA/SCL dots -->
+  <circle cx="100" cy="290" r="4" fill="#4ade80"/>
+  <circle cx="100" cy="380" r="4" fill="#4ade80"/>
+  <circle cx="100" cy="490" r="4" fill="#4ade80"/>
+
+  <!-- ====== SD CARD ====== -->
+  <rect x="830" y="250" width="150" height="120" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" rx="6"/>
+  <text x="905" y="275" fill="#38bdf8" font-size="13" font-weight="bold" text-anchor="middle">SD Card Module</text>
+  <text x="905" y="295" fill="#94a3b8" font-size="10" text-anchor="middle">SPI Bus</text>
+  <text x="905" y="315" fill="#38bdf8" font-size="10" text-anchor="middle">CS → GPIO 13</text>
+  <text x="905" y="330" fill="#38bdf8" font-size="10" text-anchor="middle">MOSI → GPIO 23</text>
+  <text x="905" y="345" fill="#38bdf8" font-size="10" text-anchor="middle">MISO → GPIO 19</text>
+  <text x="905" y="360" fill="#38bdf8" font-size="10" text-anchor="middle">CLK → GPIO 18</text>
+  
+  <!-- SD SPI lines -->
+  <line x1="760" y1="285" x2="830" y2="285" stroke="#38bdf8" stroke-width="1.5"/>
+  <line x1="760" y1="310" x2="830" y2="310" stroke="#38bdf8" stroke-width="1.5"/>
+  <line x1="760" y1="335" x2="830" y2="335" stroke="#38bdf8" stroke-width="1.5"/>
+  <line x1="760" y1="360" x2="830" y2="360" stroke="#38bdf8" stroke-width="1.5"/>
+
+  <!-- ====== RELAY BOARD ====== -->
+  <rect x="830" y="400" width="330" height="220" fill="#1e293b" stroke="#c084fc" stroke-width="1.5" rx="6"/>
+  <text x="995" y="425" fill="#c084fc" font-size="14" font-weight="bold" text-anchor="middle">8-Ch Relay Board (5V)</text>
+  <text x="995" y="445" fill="#f87171" font-size="11" text-anchor="middle">VCC → 5V rail (NOT 3.3V!)</text>
+  
+  <text x="850" y="475" fill="#c084fc" font-size="11">IN1 (Main Valve) ← GPIO 25</text>
+  <text x="850" y="500" fill="#c084fc" font-size="11">IN2 (Zone 0)     ← GPIO 26</text>
+  <text x="850" y="525" fill="#c084fc" font-size="11">IN3 (Zone 1)     ← GPIO 27</text>
+  <text x="850" y="550" fill="#c084fc" font-size="11">IN4 (Zone 2)     ← GPIO 14</text>
+  <text x="850" y="575" fill="#c084fc" font-size="11">IN5 (Zone 3)     ← GPIO 12</text>
+  <text x="850" y="600" fill="#f87171" font-size="11">GND              ← GND</text>
+
+  <!-- Relay lines -->
+  <line x1="440" y1="335" x2="380" y2="335" stroke="#c084fc" stroke-width="1.5"/>
+  <line x1="380" y1="335" x2="380" y2="475" stroke="#c084fc" stroke-width="1.5"/>
+  <line x1="380" y1="475" x2="845" y2="475" stroke="#c084fc" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- ====== SOIL SENSORS ====== -->
+  <rect x="30" y="555" width="350" height="120" fill="#1e293b" stroke="#22d3ee" stroke-width="1.5" rx="6"/>
+  <text x="205" y="580" fill="#22d3ee" font-size="14" font-weight="bold" text-anchor="middle">Capacitive Soil Moisture Sensors</text>
+  <text x="205" y="605" fill="#94a3b8" font-size="11" text-anchor="middle">Power: 3.3V + GND</text>
+  <text x="205" y="630" fill="#22d3ee" font-size="11" text-anchor="middle">Sensor 0 Signal → ADS1115 A0</text>
+  <text x="205" y="650" fill="#22d3ee" font-size="11" text-anchor="middle">Sensor 1 Signal → ADS1115 A1</text>
+  <text x="205" y="670" fill="#94a3b8" font-size="10" text-anchor="middle">(A2, A3 available for future zones)</text>
+
+  <!-- ====== POWER RAILS LEGEND ====== -->
+  <rect x="30" y="700" width="350" height="140" fill="#1e293b" stroke="#fbbf24" stroke-width="1.5" rx="6"/>
+  <text x="205" y="725" fill="#fbbf24" font-size="14" font-weight="bold" text-anchor="middle">POWER RAILS</text>
+  <line x1="50" y1="745" x2="100" y2="745" stroke="#fbbf24" stroke-width="3"/>
+  <text x="110" y="750" fill="#fbbf24" font-size="12">3.3V Rail → LCD, ADS1115, BME280, Soil Sensors</text>
+  <line x1="50" y1="770" x2="100" y2="770" stroke="#fb923c" stroke-width="3"/>
+  <text x="110" y="775" fill="#fb923c" font-size="12">5V Rail → Relay Board VCC (from ESP32 VIN)</text>
+  <line x1="50" y1="795" x2="100" y2="795" stroke="#f87171" stroke-width="3"/>
+  <text x="110" y="800" fill="#f87171" font-size="12">GND Rail → Everything shares common ground</text>
+  <line x1="50" y1="820" x2="100" y2="820" stroke="#4ade80" stroke-width="3"/>
+  <text x="110" y="825" fill="#4ade80" font-size="12">I2C (SDA+SCL) → LCD, ADS1115, BME280</text>
+
+  <!-- ====== WIRING TABLE ====== -->
+  <rect x="440" y="640" width="340" height="400" fill="#1e293b" stroke="#60a5fa" stroke-width="1.5" rx="6"/>
+  <text x="610" y="668" fill="#60a5fa" font-size="14" font-weight="bold" text-anchor="middle">COMPLETE PIN MAP</text>
+  
+  <text x="460" y="695" fill="#94a3b8" font-size="11" font-weight="bold">ESP32 PIN</text>
+  <text x="620" y="695" fill="#94a3b8" font-size="11" font-weight="bold">→ CONNECTS TO</text>
+  <line x1="450" y1="702" x2="770" y2="702" stroke="#334155" stroke-width="1"/>
+  
+  <text x="460" y="720" fill="#fbbf24" font-size="11">3.3V</text>
+  <text x="620" y="720" fill="#e2e8f0" font-size="11">LCD, ADS, BME, Sensors</text>
+  <text x="460" y="740" fill="#fb923c" font-size="11">5V (VIN)</text>
+  <text x="620" y="740" fill="#e2e8f0" font-size="11">Relay Board VCC</text>
+  <text x="460" y="760" fill="#f87171" font-size="11">GND</text>
+  <text x="620" y="760" fill="#e2e8f0" font-size="11">All GND (common)</text>
+  <text x="460" y="785" fill="#4ade80" font-size="11">GPIO 21</text>
+  <text x="620" y="785" fill="#e2e8f0" font-size="11">SDA → LCD, ADS, BME</text>
+  <text x="460" y="805" fill="#4ade80" font-size="11">GPIO 22</text>
+  <text x="620" y="805" fill="#e2e8f0" font-size="11">SCL → LCD, ADS, BME</text>
+  <text x="460" y="830" fill="#38bdf8" font-size="11">GPIO 13</text>
+  <text x="620" y="830" fill="#e2e8f0" font-size="11">SD Card CS</text>
+  <text x="460" y="850" fill="#38bdf8" font-size="11">GPIO 23</text>
+  <text x="620" y="850" fill="#e2e8f0" font-size="11">SD Card MOSI</text>
+  <text x="460" y="870" fill="#38bdf8" font-size="11">GPIO 19</text>
+  <text x="620" y="870" fill="#e2e8f0" font-size="11">SD Card MISO</text>
+  <text x="460" y="890" fill="#38bdf8" font-size="11">GPIO 18</text>
+  <text x="620" y="890" fill="#e2e8f0" font-size="11">SD Card CLK</text>
+  <text x="460" y="915" fill="#c084fc" font-size="11">GPIO 25</text>
+  <text x="620" y="915" fill="#e2e8f0" font-size="11">Relay IN1 (Main Valve)</text>
+  <text x="460" y="935" fill="#c084fc" font-size="11">GPIO 26</text>
+  <text x="620" y="935" fill="#e2e8f0" font-size="11">Relay IN2 (Zone 0)</text>
+  <text x="460" y="955" fill="#c084fc" font-size="11">GPIO 27</text>
+  <text x="620" y="955" fill="#e2e8f0" font-size="11">Relay IN3 (Zone 1)</text>
+  <text x="460" y="975" fill="#c084fc" font-size="11">GPIO 14</text>
+  <text x="620" y="975" fill="#e2e8f0" font-size="11">Relay IN4 (Zone 2)</text>
+  <text x="460" y="995" fill="#c084fc" font-size="11">GPIO 12</text>
+  <text x="620" y="995" fill="#e2e8f0" font-size="11">Relay IN5 (Zone 3)</text>
+  <text x="460" y="1020" fill="#94a3b8" font-size="11">GPIO 2</text>
+  <text x="620" y="1020" fill="#e2e8f0" font-size="11">Built-in LED</text>
+
+  <!-- ====== NODE1 REMOTE SECTION ====== -->
+  <rect x="20" y="1100" width="1160" height="480" fill="none" stroke="#f59e0b" stroke-width="2" rx="12" stroke-dasharray="8,4"/>
+  <text x="600" y="1130" fill="#f59e0b" font-size="20" font-weight="bold" text-anchor="middle">NODE1 - REMOTE SENSOR (Battery + Solar)</text>
+
+  <!-- ESP32 Node1 -->
+  <rect x="440" y="1150" width="320" height="200" fill="#1e293b" stroke="#f59e0b" stroke-width="2" rx="8"/>
+  <text x="600" y="1178" fill="#f59e0b" font-size="16" font-weight="bold" text-anchor="middle">ESP32 (Screw Terminal)</text>
+  <text x="455" y="1210" fill="#fbbf24" font-size="12">3.3V</text>
+  <text x="455" y="1235" fill="#f87171" font-size="12">GND</text>
+  <text x="455" y="1260" fill="#22d3ee" font-size="12">GPIO 34 (ADC)</text>
+  <text x="455" y="1285" fill="#4ade80" font-size="12">GPIO 35 (Batt Monitor)</text>
+  <text x="650" y="1210" fill="#fbbf24" font-size="12">VIN (3.7V from batt)</text>
+  <text x="650" y="1235" fill="#f87171" font-size="12">GND</text>
+
+  <!-- USB label Node1 -->
+  <rect x="540" y="1320" width="120" height="25" fill="#475569" rx="4"/>
+  <text x="600" y="1338" fill="white" font-size="11" text-anchor="middle">USB-C (Flash only)</text>
+
+  <!-- Soil Sensor Node1 -->
+  <rect x="30" y="1165" width="200" height="90" fill="#1e293b" stroke="#22d3ee" stroke-width="1.5" rx="6"/>
+  <text x="130" y="1190" fill="#22d3ee" font-size="13" font-weight="bold" text-anchor="middle">Soil Moisture Sensor</text>
+  <text x="130" y="1212" fill="#fbbf24" font-size="11" text-anchor="middle">VCC → 3.3V</text>
+  <text x="130" y="1230" fill="#f87171" font-size="11" text-anchor="middle">GND → GND</text>
+  <text x="130" y="1248" fill="#22d3ee" font-size="11" text-anchor="middle">Signal → GPIO 34</text>
+  <line x1="230" y1="1210" x2="440" y2="1210" stroke="#22d3ee" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- TP4056 -->
+  <rect x="830" y="1150" width="310" height="130" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5" rx="6"/>
+  <text x="985" y="1175" fill="#f59e0b" font-size="13" font-weight="bold" text-anchor="middle">TP4056 USB-C Charger</text>
+  <text x="985" y="1195" fill="#94a3b8" font-size="10" text-anchor="middle">(with protection circuit)</text>
+  <text x="850" y="1220" fill="#94a3b8" font-size="11">USB-C IN ← Solar Panel / USB charger</text>
+  <text x="850" y="1240" fill="#f59e0b" font-size="11">B+ → LiPo Battery (+)</text>
+  <text x="850" y="1260" fill="#f59e0b" font-size="11">B- → LiPo Battery (-)</text>
+  <text x="850" y="1275" fill="#4ade80" font-size="11">OUT+ → ESP32 VIN (3.3V-4.2V)</text>
+
+  <!-- Battery -->
+  <rect x="870" y="1300" width="250" height="80" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5" rx="6"/>
+  <text x="995" y="1325" fill="#f59e0b" font-size="13" font-weight="bold" text-anchor="middle">3.7V LiPo Battery</text>
+  <text x="995" y="1345" fill="#94a3b8" font-size="11" text-anchor="middle">1000mAh+ recommended</text>
+  <text x="995" y="1365" fill="#94a3b8" font-size="10" text-anchor="middle">B+ and B- connect to TP4056</text>
+  
+  <!-- Battery line -->
+  <line x1="995" y1="1280" x2="995" y2="1300" stroke="#f59e0b" stroke-width="1.5"/>
+
+  <!-- Voltage divider -->
+  <rect x="30" y="1275" width="350" height="130" fill="#1e293b" stroke="#4ade80" stroke-width="1.5" rx="6"/>
+  <text x="205" y="1300" fill="#4ade80" font-size="13" font-weight="bold" text-anchor="middle">Battery Voltage Divider</text>
+  <text x="205" y="1325" fill="#e2e8f0" font-size="12" text-anchor="middle">Batt(+) --[10K]--+--[10K]-- GND</text>
+  <text x="205" y="1345" fill="#e2e8f0" font-size="12" text-anchor="middle">                 |</text>
+  <text x="205" y="1365" fill="#4ade80" font-size="12" text-anchor="middle">              GPIO 35</text>
+  <text x="205" y="1390" fill="#94a3b8" font-size="10" text-anchor="middle">Reads battery voltage (4.2V max → 2.1V to ADC)</text>
+
+  <!-- Solar panel -->
+  <rect x="870" y="1400" width="250" height="60" fill="#1e293b" stroke="#fbbf24" stroke-width="1.5" rx="6"/>
+  <text x="995" y="1425" fill="#fbbf24" font-size="13" font-weight="bold" text-anchor="middle">Solar Panel (5V-6V, 1W+)</text>
+  <text x="995" y="1445" fill="#94a3b8" font-size="11" text-anchor="middle">Connects to TP4056 USB-C or IN+/IN-</text>
+  <line x1="995" y1="1380" x2="995" y2="1400" stroke="#fbbf24" stroke-width="1.5"/>
+
+  <!-- ====== SHOPPING LIST ====== -->
+  <rect x="20" y="1600" width="1160" height="180" fill="#1e293b" stroke="#94a3b8" stroke-width="1.5" rx="8"/>
+  <text x="600" y="1630" fill="#22d3ee" font-size="16" font-weight="bold" text-anchor="middle">SHOPPING LIST</text>
+  
+  <text x="50" y="1660" fill="#e2e8f0" font-size="12">NODE0 Hub:</text>
+  <text x="50" y="1680" fill="#94a3b8" font-size="11">- ESP32 Screw Terminal Breakout Board (Amazon B08LGFRT87 ~$15)</text>
+  <text x="50" y="1697" fill="#94a3b8" font-size="11">- ADS1115 + BME280 + LCD 16x2 (I2C) + SD Card Module + 8ch Relay Board + Capacitive Soil Sensors</text>
+  
+  <text x="50" y="1722" fill="#e2e8f0" font-size="12">NODE1 Remote (each):</text>
+  <text x="50" y="1742" fill="#94a3b8" font-size="11">- ESP32 Screw Terminal Board + TP4056 USB-C Charger (Amazon B07PKND8KG ~$3/3pk) + 3.7V LiPo + 2x 10K Resistors + Soil Sensor</text>
+  <text x="50" y="1762" fill="#94a3b8" font-size="11">- Optional: 5V-6V Solar Panel (1W+) for outdoor deployment</text>
+</svg>

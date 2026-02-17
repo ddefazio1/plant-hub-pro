@@ -1,0 +1,141 @@
+views:
+  - path: default_view
+    title: Home
+    type: masonry
+    cards:
+      # ===== STATUS BAR =====
+      - type: horizontal-stack
+        cards:
+          - type: entity
+            entity: binary_sensor.plant_hub_online
+            name: Hub
+            icon: mdi:server-network
+          - type: entity
+            entity: binary_sensor.garden_node1_online
+            name: NODE1
+            icon: mdi:access-point
+          - type: entity
+            entity: binary_sensor.plant_hub_main_valve
+            name: Valve
+            icon: mdi:valve
+          - type: entity
+            entity: sensor.plant_hub_uptime
+            name: Uptime
+
+      # ===== MOISTURE GAUGES =====
+      - type: horizontal-stack
+        cards:
+          - type: gauge
+            entity: sensor.garden_node0_zone_0_moisture
+            name: Zone 0
+            min: 0
+            max: 100
+            severity:
+              green: 40
+              yellow: 25
+              red: 0
+          - type: gauge
+            entity: sensor.garden_node0_zone_1_moisture
+            name: Zone 1
+            min: 0
+            max: 100
+            severity:
+              green: 40
+              yellow: 25
+              red: 0
+          - type: gauge
+            entity: sensor.garden_node1_zone_1_moisture
+            name: NODE1
+            min: 0
+            max: 100
+            severity:
+              green: 40
+              yellow: 25
+              red: 0
+
+      # ===== NODE1 REMOTE =====
+      - type: entities
+        title: NODE1 Remote Sensor
+        show_header_toggle: false
+        entities:
+          - entity: sensor.garden_node1_zone_1_moisture
+            name: Moisture
+          - entity: sensor.garden_node1_zone_1_battery
+            name: Battery
+          - entity: sensor.garden_node1_zone_1_last_seen
+            name: Last Seen
+          - entity: binary_sensor.garden_node1_zone_1_needs_water
+            name: Needs Water
+
+      # ===== ALERTS =====
+      - type: entities
+        title: Alerts
+        show_header_toggle: false
+        entities:
+          - entity: binary_sensor.garden_node0_zone_0_needs_water
+            name: Zone 0 Needs Water
+          - entity: binary_sensor.garden_node0_zone_1_needs_water
+            name: Zone 1 Needs Water
+          - entity: binary_sensor.garden_node1_zone_1_needs_water
+            name: NODE1 Needs Water
+
+      # ===== ENVIRONMENT =====
+      - type: glance
+        title: Environment
+        show_state: true
+        columns: 5
+        entities:
+          - entity: sensor.garden_temperature_f
+            name: Temp
+          - entity: sensor.garden_humidity
+            name: Humidity
+          - entity: sensor.garden_pressure
+            name: Pressure
+          - entity: sensor.garden_vpd
+            name: VPD
+          - entity: sensor.garden_node0_zone_0_voltage
+            name: Sensor V
+
+      # ===== CONTROLS =====
+      - type: entities
+        title: Controls
+        show_header_toggle: false
+        entities:
+          - entity: input_boolean.plant_hub_auto_water
+            name: Auto Water
+          - entity: input_boolean.plant_hub_lcd_state
+            name: LCD Backlight
+          - entity: input_number.plant_hub_water_threshold
+            name: Water Threshold
+          - entity: input_number.plant_hub_water_duration
+            name: Water Duration
+
+      # ===== WEATHER =====
+      - type: weather-forecast
+        entity: weather.forecast_home
+        show_forecast: false
+
+      # ===== MEDIA =====
+      - type: grid
+        square: false
+        columns: 2
+        cards:
+          - type: media-control
+            entity: media_player.bedroom_display
+          - type: media-control
+            entity: media_player.kitchen_display
+
+      # ===== SYSTEM (bottom) =====
+      - type: glance
+        title: System
+        show_state: true
+        columns: 4
+        entities:
+          - entity: sensor.plant_hub_heap
+            name: Memory
+          - entity: sensor.plant_hub_nodes
+            name: Nodes
+          - entity: sensor.plant_hub_battery
+            name: Battery
+          - entity: person.dave_d
+            name: Dave

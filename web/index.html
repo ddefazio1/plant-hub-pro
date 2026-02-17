@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Plant Hub Pro - Smart Irrigation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#127793;</text></svg>">
+</head>
+<body>
+
+<!-- ALERT BANNER -->
+<div id="alertBanner" class="alert-banner hidden"></div>
+
+<div class="dashboard">
+  <!-- HEADER -->
+  <header class="dash-header">
+    <div class="header-title">
+      <span class="header-icon">&#127793;</span> Plant Hub Pro
+    </div>
+    <div class="header-stats">
+      <div class="hstat"><span class="hstat-dot online" id="hubDot"></span> Hub</div>
+      <div class="hstat" id="uptimeBar">--</div>
+      <div class="hstat" id="ipBar">--</div>
+      <div class="hstat">Heap: <span id="heapBar">--</span></div>
+    </div>
+  </header>
+
+  <!-- ZONE CARDS -->
+  <section class="zones-section">
+    <h3 class="section-title">Moisture Zones</h3>
+    <div id="zonesGrid" class="zones-grid">
+      <!-- populated by JS -->
+    </div>
+  </section>
+
+  <!-- REMOTE NODES -->
+  <section id="remoteSection" class="zones-section" style="display:none;">
+    <h3 class="section-title">Remote Sensors</h3>
+    <div id="remoteGrid" class="zones-grid">
+      <!-- populated by JS -->
+    </div>
+  </section>
+
+  <!-- WEATHER -->
+  <section id="weatherSection" class="env-section" style="display:none;">
+    <div class="env-item" style="grid-column: span 2;"><div class="env-label">Forecast</div><div class="env-value" id="wxForecast" style="font-size:14px;">--</div></div>
+    <div class="env-item"><div class="env-label">Outside</div><div class="env-value" id="wxTemp">--</div></div>
+    <div class="env-item"><div class="env-label">Rain %</div><div class="env-value" id="wxRain">--</div></div>
+    <div class="env-item"><div class="env-label">Rain 6h</div><div class="env-value" id="wxRain6h">--</div></div>
+  </section>
+
+  <!-- ENVIRONMENT -->
+  <section class="env-section">
+    <div class="env-item"><div class="env-label">Temp</div><div class="env-value" id="envTemp">--</div></div>
+    <div class="env-item"><div class="env-label">Humidity</div><div class="env-value" id="envHum">--</div></div>
+    <div class="env-item"><div class="env-label">Pressure</div><div class="env-value" id="envPress">--</div></div>
+    <div class="env-item"><div class="env-label">VPD</div><div class="env-value" id="envVPD">--</div></div>
+    <div class="env-item"><div class="env-label">Battery</div><div class="env-value" id="envBatt">--</div></div>
+  </section>
+
+  <!-- CONTROLS -->
+  <section class="controls-section">
+    <div class="controls-row">
+      <button class="ctrl-btn ctrl-green" onclick="sendCommand('relayOn')">Pump ON</button>
+      <button class="ctrl-btn ctrl-red" onclick="sendCommand('relayOff')">Pump OFF</button>
+      <button class="ctrl-btn ctrl-blue" onclick="sendCommand('lcdOn')">LCD ON</button>
+      <button class="ctrl-btn ctrl-gray" onclick="sendCommand('lcdOff')">LCD OFF</button>
+    </div>
+    <div class="toggle-row">
+      <label class="toggle-label">
+        <input type="checkbox" id="tempToggle" checked onchange="toggleTemp()">
+        <span class="toggle-track"><span class="toggle-thumb"></span></span> F / C
+      </label>
+      <label class="toggle-label">
+        <input type="checkbox" id="pressToggle" onchange="togglePressure()">
+        <span class="toggle-track"><span class="toggle-thumb"></span></span> inHg / hPa
+      </label>
+      <a class="csv-link" href="/moisture.csv" download>Download CSV</a>
+    </div>
+  </section>
+
+  <!-- CHARTS -->
+  <section class="charts-section">
+    <h3 class="section-title">History</h3>
+    <div class="charts-grid">
+      <div class="chart-box"><canvas id="moistureChart"></canvas></div>
+      <div class="chart-box"><canvas id="tempChart"></canvas></div>
+      <div class="chart-box"><canvas id="humChart"></canvas></div>
+      <div class="chart-box"><canvas id="pressureChart"></canvas></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="dash-footer">
+    <span>&copy; 2026 518 IT Solutions LLC</span>
+    <span>Plant Hub Pro v2.6</span>
+  </footer>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
